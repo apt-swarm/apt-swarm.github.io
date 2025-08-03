@@ -15,7 +15,7 @@ export default defineConfig({
         {
           icon: "github",
           label: "GitHub",
-          href: "https://github.com/neuroverse-fm/apt-swarm",
+          href: "https://github.com/apt-swarm/",
         },
       ],
       sidebar: [
