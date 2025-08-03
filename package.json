@@ -9,8 +9,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "preinstall": "npx only-allow pnpm",
-    "prepare": "astro sync"
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@astrojs/preact": "^4.1.0",

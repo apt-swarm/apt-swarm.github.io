@@ -28,14 +28,14 @@ import { Tabs, TabItem } from '@astrojs/starlight/components';
         <TabItem label="Debian">
           ```bash
           echo "deb [signed-by=/etc/apt/keyrings/apt-swarm.asc] \ 
-            https://apt-swarm.ktrain5369.dev/repo/ bookworm main" \
+            https://apt-swarm.ktrain5369.dev/repo bookworm main" \
             | sudo tee /etc/apt/sources.list.d/apt-swarm.list
           ```
         </TabItem>
         <TabItem label="Ubuntu">
           ```bash
           echo "deb [signed-by=/etc/apt/keyrings/apt-swarm.asc] \
-            https://apt-swarm.ktrain5369.dev/repo/ noble main" \
+            https://apt-swarm.ktrain5369.dev/repo noble main" \
             | sudo tee /etc/apt/sources.list.d/apt-swarm.list
           ```
         </TabItem>
