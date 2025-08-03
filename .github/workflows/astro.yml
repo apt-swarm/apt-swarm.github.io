@@ -1,0 +1,59 @@
+name: Build & Publish APT Repo
+
+# Trigger the workflow whenever you push new .deb files or change the workflow itself
+on:
+  push:
+    paths:
+      - '*'
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      # Make your KEY ID available to the steps (no 0x prefix)
+
+    steps:
+      # 1. Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 2. Install the deep for building
+
+      - name: Install Node.js v20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      
+      # 7. Build the astro docs
+      - name: Build astro
+        run: |
+          # install pnpm
+          npm install -g pnpm
+
+          # build the docs
+          pnpm install 
+          pnpm run build
+
+          # Move the docs over to the public folder
+
+
+      # 8. Deploy the `public/` folder to the gh-pages branch
+      - name: Upload for GitHub Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist
+  deploy:
+    name: Deploy repo
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+        name: github-pages
+        url: ${{ steps.deploy.outputs.page_url }}
+    permissions:
+        pages: write
+        id-token: write
+    steps:
+        - name: Deploy
+          id: deploy
+          uses: actions/deploy-pages@v4
