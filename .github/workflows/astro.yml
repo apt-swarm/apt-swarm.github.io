@@ -1,4 +1,4 @@
-name: Build & Publish APT Repo
+name: Build & Publish Docs
 
 # Trigger the workflow whenever you push new .deb files or change the workflow itself
 on:
@@ -8,41 +8,44 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-      # Make your KEY ID available to the steps (no 0x prefix)
 
     steps:
-      # 1. Check out the repository
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-
-      # 2. Install the deep for building
+      
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 10.x.x
 
       - name: Install Node.js v20
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-
+          node-version: 22.x.x
+          cache: 'pnpm'
+          cache-dependency-path: ./pnpm-lock.yaml
       
-      # 7. Build the astro docs
+      - name: Cache .astro + output
+        uses: actions/cache@v4
+        with:
+          path: |
+            .astro/
+            node_modules/
+            dist/
+          key: ${{ github.repository }}-docs-cache-${{ github.ref }}
+
       - name: Build astro
         run: |
-          # install pnpm
-          npm install -g pnpm
-
-          # build the docs
-          pnpm install 
+          pnpm install
           pnpm run build
 
-          # Move the docs over to the public folder
-
-
-      # 8. Deploy the `public/` folder to the gh-pages branch
       - name: Upload for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
+
   deploy:
     name: Deploy repo
     needs: build
