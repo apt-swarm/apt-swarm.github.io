@@ -11,7 +11,7 @@ const PR_TEMPLATES: PRTemplate[] = [
 
 export default function PRLinker() {
   const [username, setUsername] = useState("");
-  const [repository, setRepository] = useState("apt-swarm");
+  const [repository, setRepository] = useState("");
   const [branch, setBranch] = useState("");
 
   const mainBranch = "main";
@@ -22,9 +22,9 @@ export default function PRLinker() {
     }
 
     const headBranchPart =
-      username !== "neuroverse-fm" ? `${username}:${repository}:` : "";
+      username !== "apt-swarm" ? `${username}:${repository}:` : "";
 
-    const baseUrl = `https://github.com/neuroverse-fm/apt-swarm/compare/${mainBranch}...${headBranchPart}${branch}`;
+    const baseUrl = `https://github.com/apt-swarm/repo/compare/${mainBranch}...${headBranchPart}${branch}`;
 
     if (template) {
       return `${baseUrl}?template=${template.filename}`;
@@ -71,7 +71,7 @@ export default function PRLinker() {
             type="text"
             value={username}
             onInput={(e) => setUsername((e.target as HTMLInputElement).value)}
-            placeholder="e.g., neuroverse-fm"
+            placeholder="e.g., apt-swarm"
             class="text-box"
           />
         </div>
@@ -88,7 +88,7 @@ export default function PRLinker() {
             type="text"
             value={repository}
             onInput={(e) => setRepository((e.target as HTMLInputElement).value)}
-            placeholder="e.g., apt-swarm"
+            placeholder="e.g., repo"
             class="text-box"
           />
         </div>
@@ -124,7 +124,7 @@ export default function PRLinker() {
             <code
               class="diff-box"
             >
-              {(username !== "neuroverse-fm"
+              {(username !== "apt-swarm"
                 ? (username || "your-name") + ":"
                 : "") + (branch || "your-branch")}
             </code>{" "}
@@ -132,9 +132,9 @@ export default function PRLinker() {
             <code
               class="diff-box"
             >
-              {username === "neuroverse-fm"
+              {username === "apt-swarm"
                 ? mainBranch
-                : `neuroverse-fm:${mainBranch}`}
+                : `apt-swarm:${mainBranch}`}
             </code>
           </small>
         </div>
