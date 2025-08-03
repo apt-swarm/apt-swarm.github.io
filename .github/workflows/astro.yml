@@ -4,7 +4,7 @@ name: Build & Publish APT Repo
 on:
   push:
     paths:
-      - '*'
+      - '**'
 jobs:
   build:
     runs-on: ubuntu-latest
