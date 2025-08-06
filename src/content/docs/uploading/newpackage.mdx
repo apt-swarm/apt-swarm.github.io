@@ -11,11 +11,13 @@ This is for new package, updates are on the next page!
 
 <Steps>
     1. Make sure your package meets all prerequisites on the [previous page](/uploading/prereqs).
-    2. Build your package with correct metadata, it should have a name, icon, and author at the very least.
+    2. Create a new (public) repository on Github, or use a branch on your projects repository. Then please:
+        - Update your new branch to allow for builds of `.deb` packages.
+        - Create a script called `build.sh`, this script should build the app and place the `.deb` file into the `../built` directory. Some example scripts can be found [here](https://github.com/apt-swarm/swarmfm-player/blob/public/build.sh) and [here](https://github.com/apt-swarm/A-neuro-who-can-t-sing/blob/main/build.sh).
     3. [Create a fork of the repo](https://github.com/apt-swarm/repo/fork), and locate the `repos.json` file.
         <FileTree>
         - .github
-        - repos.json
+        - **repos.json**
         - .gitignore
         - PROCEDURES.md
         - README.md

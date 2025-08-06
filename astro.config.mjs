@@ -32,6 +32,7 @@ export default defineConfig({
             // Each item here is one entry in the navigation menu.
             { label: "Prerequisites", slug: "uploading/prereqs" },
             { label: "Uploading a new Package", slug: "uploading/newpackage" },
+            { label: "Update a existing package", slug: "uploading/updatingapackage" },
           ],
         },
         {
